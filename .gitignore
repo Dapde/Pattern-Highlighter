@@ -1,0 +1,8 @@
+# IDE - VSCode
+.vscode/
+
+# Local debug files
+temp/
+
+# System Files
+.DS_Store
