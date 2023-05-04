@@ -643,7 +643,9 @@ export class SupportedPatternsList extends LitElement {
                 ${constants.patternConfig.patterns.map((pattern) =>
             html`
                     <li title="${pattern.info}">
-                        <a href="${pattern.infoUrl}" target="_blank">${pattern.name}</a>
+                        <a href="${pattern.infoUrl}" target="_blank">
+                            ${pattern.name} (${pattern.languages.map(l => l.toUpperCase()).join(", ")})
+                        </a>
                     </li>`
         )}
             </ul>

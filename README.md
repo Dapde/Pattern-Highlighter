@@ -41,7 +41,7 @@ Currently, one detection function each is implemented for the four following pat
 - [Social Proof](https://dapde.de/en/dark-patterns-en/types-and-examples-en/druck2-en/)
 - [Forced Continuity](https://dapde.de/en/dark-patterns-en/types-and-examples-en/operativer-zwang2-en/)
 
-Right now, all of the four detection functions are optimized for German websites and cannot be applied to websites in other languages.
+Right now, all of the four detection functions are optimized for German and English websites and cannot be applied to websites in other languages.
 
 ## Browser Compatibility
 | Browser         	| Is compatible? 	| Tested versions                                                               	|

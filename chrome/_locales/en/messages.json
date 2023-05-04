@@ -61,51 +61,51 @@
       }
     }
   },
-  "patternCountdownDE_name": {
-    "message": "Countdown (DE)",
-    "description": "Name of the countdown pattern (optimized for German websites)."
+  "patternCountdown_name": {
+    "message": "Countdown",
+    "description": "Name of the countdown pattern."
   },
-  "patternCountdownDE_infoUrl": {
+  "patternCountdown_infoUrl": {
     "message": "https://dapde.de/en/dark-patterns-en/types-and-examples-en/druck2-en/",
     "description": "URL to the explanation of the countdown pattern on the dapde.de website."
   },
-  "patternCountdownDE_info": {
+  "patternCountdown_info": {
     "message": "Countdown patterns induce (truthfully or falsely) the impression that a product or service is only available for a certain period of time. This is illustrated through a running clock or a lapsing bar. You can watch as the desired good slips away.",
     "description": "Brief explanation of the countdown Pattern."
   },
-  "patternScarcityDE_name": {
-    "message": "Scarcity (DE)",
-    "description": "Name of the scarcity pattern (optimized for German websites)."
+  "patternScarcity_name": {
+    "message": "Scarcity",
+    "description": "Name of the scarcity pattern."
   },
-  "patternScarcityDE_infoUrl": {
+  "patternScarcity_infoUrl": {
     "message": "https://dapde.de/en/dark-patterns-en/types-and-examples-en/druck2-en/",
     "description": "URL to the explanation of the scarcity pattern on the dapde.de website."
   },
-  "patternScarcityDE_info": {
+  "patternScarcity_info": {
     "message": "The Scarcity Pattern induces (truthfully or falsely) the impression that goods or services are only available in limited numbers. Scarcity Patterns are also used in versions where the alleged scarcity is simply invented or where it is not made clear whether the limited availability relates to the product as a whole or only to the contingent of the portal visited.",
     "description": "Brief explanation of the scarcity Pattern."
   },
-  "patternSocialProofDE_name": {
-    "message": "Social Proof (DE)",
-    "description": "Name of the social proof pattern (optimized for German websites)."
+  "patternSocialProof_name": {
+    "message": "Social Proof",
+    "description": "Name of the social proof pattern."
   },
-  "patternSocialProofDE_infoUrl": {
+  "patternSocialProof_infoUrl": {
     "message": "https://dapde.de/en/dark-patterns-en/types-and-examples-en/druck2-en/",
     "description": "URL to the explanation of the social proof pattern on the dapde.de website."
   },
-  "patternSocialProofDE_info": {
+  "patternSocialProof_info": {
     "message": "Social Proof is another Dark Pattern of this category. Positive product reviews or activity reports from other users are displayed directly. Often, these reviews or reports are simply made up. But authentic reviews or reports also influence the purchase decision through smart selection and placement.",
     "description": "Brief explanation of the social proof Pattern."
   },
-  "patternForcedContinuityDE_name": {
-    "message": "Forced Continuity (DE)",
-    "description": "Name of the forced continuity pattern (optimized for German websites)."
+  "patternForcedContinuity_name": {
+    "message": "Forced Continuity",
+    "description": "Name of the forced continuity pattern."
   },
-  "patternForcedContinuityDE_infoUrl": {
+  "patternForcedContinuity_infoUrl": {
     "message": "https://dapde.de/en/dark-patterns-en/types-and-examples-en/operativer-zwang2-en/",
     "description": "URL to the explanation of the forced continuity pattern on the dapde.de website."
   },
-  "patternForcedContinuityDE_info": {
+  "patternForcedContinuity_info": {
     "message": "The Forced Continuity pattern automatically renews free or low-cost trial subscriptions - but for a fee or at a higher price. The design trick is that the order form visually suggests that there is no charge and conceals the (automatic) follow-up costs.",
     "description": "Brief explanation of the forced continuity Pattern."
   }
