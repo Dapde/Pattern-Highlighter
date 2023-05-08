@@ -21,6 +21,10 @@ export const sharedStyles = css`
     h2 {
         margin: 0.5em 0;
     }
+
+    * {
+        font-family: "Trebuchet MS", "Arial", sans-serif;
+    }
 `;
 
 export const patternLinkStyles = css`

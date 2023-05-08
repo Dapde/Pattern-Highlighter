@@ -13,6 +13,14 @@ const browser = chrome;
 const activationPrefix = "activation_";
 
 /**
+ * The object to access the browser storage API.
+ * If no session storage is supported, use local storage (Firefox).
+ * @constant
+ * @type {object}
+ */
+const storage = browser.storage.session ? browser.storage.session : browser.storage.local;
+
+/**
  * Retrieves the activation state for a tab from the session storage and returns it.
  * @param {number} tabId The ID of the tab of which the activation state should be retrieved.
  * @returns {Promise<boolean|undefined>} `true` if the extension is activated,
@@ -24,7 +32,7 @@ async function getActivation(tabId){
     // Since only one key in the storage is requested, the object contains exactly one or no value.
     // Therefore, the first value of the object is accessed directly.
     // If no value exists, the access returns `undefined`.
-    return Object.values(await browser.storage.session.get(`${activationPrefix}${tabId}`))[0];
+    return Object.values(await storage.get(`${activationPrefix}${tabId}`))[0];
 }
 
 /**
@@ -36,7 +44,7 @@ async function getActivation(tabId){
 async function setActivation(tabId, activation){
     // Set the activation state in the session storage.
     // Compose the key from the `activationPrefix` and the `tabId`.
-    return await browser.storage.session.set({[`${activationPrefix}${tabId}`]: activation});
+    return await storage.set({[`${activationPrefix}${tabId}`]: activation});
 }
 
 /**
@@ -47,7 +55,7 @@ async function setActivation(tabId, activation){
 async function removeActivation(tabId){
     // Remove the activation state from the session storage.
     // Compose the key from the `activationPrefix` and the `tabId`.
-    return await browser.storage.session.remove(`${activationPrefix}${tabId}`);
+    return await storage.remove(`${activationPrefix}${tabId}`);
 }
 
 /**

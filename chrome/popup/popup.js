@@ -28,9 +28,9 @@ const activationState = Object.freeze({
 // Add an event handler that processes incoming messages.
 // Expected messages to the popup are the results of the pattern detection from the content script.
 browser.runtime.onMessage.addListener(
-    async function (message, sender, sendResponse) {
+    function (message, sender, sendResponse) {
         // Pass the message to the corresponding method of the `ExtensionPopup` component.
-        await document.querySelector("extension-popup").handleMessage(message, sender, sendResponse);
+        document.querySelector("extension-popup").handleMessage(message, sender, sendResponse);
     }
 );
 

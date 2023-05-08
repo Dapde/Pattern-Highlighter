@@ -6,3 +6,7 @@ temp/
 
 # System Files
 .DS_Store
+
+# Firefox version (only keep the different files)
+firefox/*
+!firefox/manifest.json

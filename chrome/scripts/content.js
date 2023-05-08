@@ -12,8 +12,14 @@ const browser = chrome;
  */
 let constants;
 
-// Initialize the extension script after the page has loaded.
-window.addEventListener("load", async function (e) {
+// Initialize the extension.
+initPatternHighlighter();
+
+/**
+ * Initialize the extension in the current tab.
+ * @returns {Promise<void>}
+ */
+async function initPatternHighlighter(){
     // Ask the background script if the extension should be activated in this tab.
     /**
      * The object that contains the activation state of the extension in the current tab.
@@ -44,7 +50,7 @@ window.addEventListener("load", async function (e) {
 
         // Listen for messages from the popup.
         browser.runtime.onMessage.addListener(
-            async function (message, sender, sendResponse) {
+            function (message, sender, sendResponse) {
                 // Check which action is requested by the popup.
                 if (message.action === "getPatternCount") {
                     // Compute the pattern statistics/counts and send the result as response.
@@ -65,7 +71,7 @@ window.addEventListener("load", async function (e) {
         // Print a message that the pattern highlighter is disabled.
         console.log(browser.i18n.getMessage("infoExtensionDisabled"))
     }
-}, false);
+}
 
 /**
  * An observer that performs the pattern checking and highlighting after an observed change.
