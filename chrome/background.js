@@ -3,7 +3,7 @@
  * @constant
  * @type {{runtime: object, tabs: object, action: object}} BrowserAPI
  */
-const browser = chrome;
+const brw = chrome;
 
 /**
  * The prefix for the keys in the session storage under which the activation state of the tabs is stored.
@@ -18,7 +18,7 @@ const activationPrefix = "activation_";
  * @constant
  * @type {object}
  */
-const storage = browser.storage.session ? browser.storage.session : browser.storage.local;
+const storage = brw.storage.session ? brw.storage.session : brw.storage.local;
 
 /**
  * Retrieves the activation state for a tab from the session storage and returns it.
@@ -82,7 +82,7 @@ async function getActivationOrSetDefault(tabId){
 
 // Add event listeners for messages from other scripts of the extension.
 // The defined callback function is executed when a message is received from the content or popup script.
-browser.runtime.onMessage.addListener(
+brw.runtime.onMessage.addListener(
     function (message, sender, sendResponse) {
         if ("countVisible" in message) {
             // If the count of visible detected patterns is included in the message,
@@ -155,7 +155,7 @@ browser.runtime.onMessage.addListener(
 // It is not really clear when and how often this event occurs.
 // The documentation states the following (https://developer.chrome.com/docs/extensions/reference/tabs/#event-onReplaced):
 // "Fired when a tab is replaced with another tab due to prerendering or instant.".
-browser.tabs.onReplaced.addListener(async function (addedTabId, removedTabId) {
+brw.tabs.onReplaced.addListener(async function (addedTabId, removedTabId) {
     // Save the activation state of the old tab ID for the new tab ID.
     await setActivation(addedTabId, await getActivation(removedTabId));
     // Delete the activation state of the old tab ID.
@@ -164,7 +164,7 @@ browser.tabs.onReplaced.addListener(async function (addedTabId, removedTabId) {
 
 // Add an event handler that handles the closing of tabs.
 // When a tab is closed, the activation state should be reset, i.e. deleted.
-browser.tabs.onRemoved.addListener(async function (tabId, removeInfo) {
+brw.tabs.onRemoved.addListener(async function (tabId, removeInfo) {
     // Delete the activation state of the closed tab ID.
     await removeActivation(tabId);
 });
@@ -174,7 +174,7 @@ browser.tabs.onRemoved.addListener(async function (tabId, removeInfo) {
  * Is read directly from the manifest file.
  * @type {Object.<number, string>}
  */
-let icons_default = browser.runtime.getManifest().icons;
+let icons_default = brw.runtime.getManifest().icons;
 /**
  * A dictionary in which the paths to the extension's grayed out icon, which is used when the extension
  * is disabled, are specified in different resolutions.
@@ -190,19 +190,19 @@ for (let resolution in icons_default) {
 // Add an event handler that processes updates from tabs.
 // With this event can be used to capture changes to the URL.
 // This allows to detect whether the extension should be enabled in a tab or not.
-browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+brw.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     // If the tab contains a web page loaded with HTTP(S), the default icon should be displayed.
     // Otherwise the content script is not enabled and therefore the extension is disabled.
     // In this case, a gray version of the icon should be displayed.
     if (tab.url.toLowerCase().startsWith("http://") || tab.url.toLowerCase().startsWith("https://")) {
         // Set the default icon for the tab.
-        browser.action.setIcon({
+        brw.action.setIcon({
             path: icons_default,
             tabId: tabId
         });
     } else {
         // Set the gray icon for the tab.
-        browser.action.setIcon({
+        brw.action.setIcon({
             path: icons_disabled,
             tabId: tabId
         });
@@ -217,7 +217,7 @@ browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
  */
 function displayPatternCount(count, tabId) {
     // Set the text on the icon (badge) of the specified tab to the count passed.
-    browser.action.setBadgeText({
+    brw.action.setBadgeText({
         tabId: tabId,
         text: "" + count
     });
@@ -230,7 +230,7 @@ function displayPatternCount(count, tabId) {
         bgColor = [0, 255, 0, 255];
     }
     // Set the background color for the icon text of the specified tab.
-    browser.action.setBadgeBackgroundColor({
+    brw.action.setBadgeBackgroundColor({
         tabId: tabId,
         color: bgColor
     });

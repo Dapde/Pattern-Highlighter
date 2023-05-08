@@ -3,7 +3,7 @@
  * @constant
  * @type {{runtime: object, i18n: object}} BrowserAPI
  */
-const browser = chrome;
+const brw = chrome;
 
 /**
  * This variable will be dynamically populated with the constants from the other module. 
@@ -26,30 +26,30 @@ async function initPatternHighlighter(){
      * @constant
      * @type {{isEnabled: boolean}} ResponseMessage
      */
-    const activationState = await browser.runtime.sendMessage({ action: "getActivationState" });
+    const activationState = await brw.runtime.sendMessage({ action: "getActivationState" });
 
     // Initialize the extension in the tab if it should be activated.
     if (activationState.isEnabled === true) {
 
         // Dynamically import the constants from the module.
-        constants = await import(await browser.runtime.getURL("scripts/constants.js"));
+        constants = await import(await brw.runtime.getURL("scripts/constants.js"));
 
         // Check if the pattern configuration is valid.
         if (!constants.patternConfigIsValid) {
             // If the configuration is not valid, issue an error message,
             // do not start pattern highlighting, and exit.
-            console.error(browser.i18n.getMessage("errorInvalidConfig"));
+            console.error(brw.i18n.getMessage("errorInvalidConfig"));
             return;
         }
 
         // Print a message that the pattern highlighter has started.
-        console.log(browser.i18n.getMessage("infoExtensionStarted"));
+        console.log(brw.i18n.getMessage("infoExtensionStarted"));
 
         // Run the initial pattern check and highlighting.
         await patternHighlighting();
 
         // Listen for messages from the popup.
-        browser.runtime.onMessage.addListener(
+        brw.runtime.onMessage.addListener(
             function (message, sender, sendResponse) {
                 // Check which action is requested by the popup.
                 if (message.action === "getPatternCount") {
@@ -69,7 +69,7 @@ async function initPatternHighlighter(){
         );
     } else {
         // Print a message that the pattern highlighter is disabled.
-        console.log(browser.i18n.getMessage("infoExtensionDisabled"))
+        console.log(brw.i18n.getMessage("infoExtensionDisabled"))
     }
 }
 
@@ -362,13 +362,13 @@ function sendResults() {
     let results = getPatternsResults();
 
     // Send the object to all other extension scripts. Do nothing in the event of a reply.
-    browser.runtime.sendMessage(
+    brw.runtime.sendMessage(
         results,
         function (response) { }
     );
 
     // Print out the number of visible pattern elements.
-    console.log(browser.i18n.getMessage("infoNumberPatternsFound", [results.countVisible.toString()]));
+    console.log(brw.i18n.getMessage("infoNumberPatternsFound", [results.countVisible.toString()]));
 }
 
 /**

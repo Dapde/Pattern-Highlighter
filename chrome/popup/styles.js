@@ -6,7 +6,7 @@ import { css, unsafeCSS } from '../scripts/lit/lit-core.min.js';
  * @constant
  * @type {{runtime: object, tabs: object, i18n: object}} BrowserAPI
  */
-const browser = chrome;
+const brw = chrome;
 
 export const sharedStyles = css`
     div {
@@ -121,14 +121,14 @@ export const onOffSwitchStyles = css`
     }
 
     .onoffswitch-inner:before {
-        content: "${unsafeCSS(browser.i18n.getMessage("buttonOnState"))}";
+        content: "${unsafeCSS(brw.i18n.getMessage("buttonOnState"))}";
         padding-left: 10px;
         background-color: #34A7C1;
         color: #FFFFFF;
     }
 
     .onoffswitch-inner:after {
-        content: "${unsafeCSS(browser.i18n.getMessage("buttonOffState"))}";
+        content: "${unsafeCSS(brw.i18n.getMessage("buttonOffState"))}";
         padding-right: 10px;
         background-color: #EEEEEE;
         color: #999999;

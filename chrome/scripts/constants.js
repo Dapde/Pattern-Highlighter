@@ -3,7 +3,7 @@
  * @constant
  * @type {{runtime: object, i18n: object}} BrowserAPI
  */
-const browser = chrome;
+const brw = chrome;
 
 /**
  * Configuration of the pattern detection functions.
@@ -37,7 +37,7 @@ export const patternConfig = {
              * This is illustrated through a running clock or a lapsing bar.
              * You can watch as the desired good slips away.
              */
-            name: browser.i18n.getMessage("patternCountdown_name"),
+            name: brw.i18n.getMessage("patternCountdown_name"),
             className: "countdown",
             detectionFunctions: [
                 function (node, nodeOld) {
@@ -122,8 +122,8 @@ export const patternConfig = {
                     return false;
                 }
             ],
-            infoUrl: browser.i18n.getMessage("patternCountdown_infoUrl"),
-            info: browser.i18n.getMessage("patternCountdown_info"),
+            infoUrl: brw.i18n.getMessage("patternCountdown_infoUrl"),
+            info: brw.i18n.getMessage("patternCountdown_info"),
             languages: [
                 "en",
                 "de"
@@ -137,7 +137,7 @@ export const patternConfig = {
              * Scarcity Patterns are also used in versions where the alleged scarcity is simply invented or
              * where it is not made clear whether the limited availability relates to the product as a whole or only to the contingent of the portal visited.
              */
-            name: browser.i18n.getMessage("patternScarcity_name"),
+            name: brw.i18n.getMessage("patternScarcity_name"),
             className: "scarcity",
             detectionFunctions: [
                 function (node, nodeOld) {
@@ -161,8 +161,8 @@ export const patternConfig = {
                     return /\d+\s*(?:\%|stücke?|stk\.?)?\s*(?:verfügbar|verkauft|eingelöst)|letzter\s*Artikel/i.test(node.innerText);
                 }
             ],
-            infoUrl: browser.i18n.getMessage("patternScarcity_infoUrl"),
-            info: browser.i18n.getMessage("patternScarcity_info"),
+            infoUrl: brw.i18n.getMessage("patternScarcity_infoUrl"),
+            info: brw.i18n.getMessage("patternScarcity_info"),
             languages: [
                 "en",
                 "de"
@@ -176,7 +176,7 @@ export const patternConfig = {
              * Often, these reviews or reports are simply made up.
              * But authentic reviews or reports also influence the purchase decision through smart selection and placement.
              */
-            name: browser.i18n.getMessage("patternSocialProof_name"),
+            name: brw.i18n.getMessage("patternSocialProof_name"),
             className: "social-proof",
             detectionFunctions: [
                 function (node, nodeOld) {
@@ -198,8 +198,8 @@ export const patternConfig = {
                     return /\d+\s*(?:andere)?\s*(?:Kunden?|Käufer|Besteller|Nutzer|Leute|Person(?:en)?)(?:(?:\s*\/\s*)?[_\-\*]?innen)?\s*(?:(?:kauften|bestellten|haben)\s*(?:auch|ebenfalls)?|(?:bewerteten|rezensierten))\s*(?:diese[ns]?|(?:den|die|das)?\s*folgenden?)\s*(?:Produkte?|Artikel)/i.test(node.innerText);
                 }
             ],
-            infoUrl: browser.i18n.getMessage("patternSocialProof_infoUrl"),
-            info: browser.i18n.getMessage("patternSocialProof_info"),
+            infoUrl: brw.i18n.getMessage("patternSocialProof_infoUrl"),
+            info: brw.i18n.getMessage("patternSocialProof_info"),
             languages: [
                 "en",
                 "de"
@@ -211,7 +211,7 @@ export const patternConfig = {
              * The Forced Continuity pattern automatically renews free or low-cost trial subscriptions - but for a fee or at a higher price.
              * The design trick is that the order form visually suggests that there is no charge and conceals the (automatic) follow-up costs.
              */
-            name: browser.i18n.getMessage("patternForcedContinuity_name"),
+            name: brw.i18n.getMessage("patternForcedContinuity_name"),
             className: "forced-continuity",
             detectionFunctions: [
                 function (node, nodeOld) {
@@ -263,8 +263,8 @@ export const patternConfig = {
                     return false;
                 }
             ],
-            infoUrl: browser.i18n.getMessage("patternForcedContinuity_infoUrl"),
-            info: browser.i18n.getMessage("patternForcedContinuity_info"),
+            infoUrl: brw.i18n.getMessage("patternForcedContinuity_infoUrl"),
+            info: brw.i18n.getMessage("patternForcedContinuity_info"),
             languages: [
                 "en",
                 "de"

@@ -28,11 +28,11 @@
     "description": "Text für den Button um das Pattern Highlighting auf der Seite zu wiederholen."
   },
   "headingShowPattern": {
-    "message": "Pattern anzeigen",
+    "message": "Patterns anzeigen",
     "description": "Überschrift im Popup für die Buttons um einzelne Pattern-Elemente anzuzeigen."
   },
   "headingFoundPatterns": {
-    "message": "Gefundene Pattern",
+    "message": "Gefundene Patterns",
     "description": "Überschrift im Popup für die Liste der gefundenen Pattern."
   },
   "headingSupportedPatterns": {
@@ -52,7 +52,7 @@
     "description": "Nachricht in der Konsole, wenn der Pattern Highlighter in einem Tab deaktiviert ist."
   },
   "infoNumberPatternsFound": {
-    "message": "$COUNT$ Pattern wurden erkannt.",
+    "message": "$COUNT$ Pattern(s) wurden erkannt.",
     "description": "Nachricht in der Konsole, wie viele Pattern erkannt wurden.",
     "placeholders": {
       "count": {
