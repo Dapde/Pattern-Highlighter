@@ -29,7 +29,7 @@ if [ "$unexpected_argument" -eq 1 ]; then
     exit 1
 fi
 
-# Get the relative path of the script.
+# Get the relative path to the directory of the script.
 script_dir=$(dirname "$0")
 
 # Empty the "firefox" folder before copying the files or if a flag for cleaning has been set.
