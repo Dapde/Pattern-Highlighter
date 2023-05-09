@@ -12,7 +12,7 @@ import { onOffSwitchStyles, sharedStyles, actionButtonStyles, patternsListStyles
  * @constant
  * @type {{runtime: object, tabs: object, i18n: object}} BrowserAPI
  */
-const browser = chrome;
+const brw = chrome;
 
 /**
  * An enum-like object that defines numbers for activation states of the extension.
@@ -27,10 +27,10 @@ const activationState = Object.freeze({
 
 // Add an event handler that processes incoming messages.
 // Expected messages to the popup are the results of the pattern detection from the content script.
-browser.runtime.onMessage.addListener(
-    async function (message, sender, sendResponse) {
+brw.runtime.onMessage.addListener(
+    function (message, sender, sendResponse) {
         // Pass the message to the corresponding method of the `ExtensionPopup` component.
-        await document.querySelector("extension-popup").handleMessage(message, sender, sendResponse);
+        document.querySelector("extension-popup").handleMessage(message, sender, sendResponse);
     }
 );
 
@@ -41,7 +41,7 @@ browser.runtime.onMessage.addListener(
  * @returns {Promise.<{url: string, id: number, windowId: number}>}
  */
 async function getCurrentTab() {
-    return (await browser.tabs.query({ active: true, currentWindow: true }))[0];
+    return (await brw.tabs.query({ active: true, currentWindow: true }))[0];
 }
 
 /**
@@ -117,7 +117,7 @@ export class ExtensionPopup extends LitElement {
         // which means that the extension's content script will be injected.
         if (currentTab.url.toLowerCase().startsWith("http://") || currentTab.url.toLowerCase().startsWith("https://")) {
             // Load the activation state.
-            let currentTabActivation = await browser.runtime.sendMessage({ "action": "getActivationState", "tabId": currentTab.id });
+            let currentTabActivation = await brw.runtime.sendMessage({ "action": "getActivationState", "tabId": currentTab.id });
             // Only do more, if the extension is activated.
             if (currentTabActivation.isEnabled) {
                 // Set the activation state to on.
@@ -129,7 +129,7 @@ export class ExtensionPopup extends LitElement {
                 while (true) {
                     try {
                         // Load the results of the pattern detection.
-                        this.results = await browser.tabs.sendMessage(currentTab.id, { action: "getPatternCount" });
+                        this.results = await brw.tabs.sendMessage(currentTab.id, { action: "getPatternCount" });
                         // Break out of the infinite loop if the request did not throw an error.
                         break;
                     } catch (error) {
@@ -188,9 +188,9 @@ export class PopupHeader extends LitElement {
      */
     render() {
         return html`
-        <h1>${browser.i18n.getMessage("extName")}</h1>
+        <h1>${brw.i18n.getMessage("extName")}</h1>
         ${!constants.patternConfigIsValid ?
-                html`<h3>${browser.i18n.getMessage("errorInvalidConfig")}<h3>` : html``}
+                html`<h3>${brw.i18n.getMessage("errorInvalidConfig")}<h3>` : html``}
       `;
     }
 }
@@ -277,9 +277,9 @@ export class RefreshButton extends LitElement {
      */
     async refreshTab() {
         // Set the activation state for the current tab.
-        await browser.runtime.sendMessage({ "enableExtension": this.app.activation === activationState.On, "tabId": (await getCurrentTab()).id });
+        await brw.runtime.sendMessage({ "enableExtension": this.app.activation === activationState.On, "tabId": (await getCurrentTab()).id });
         // Reload the current tab.
-        await browser.tabs.reload();
+        await brw.tabs.reload();
         // Set the initial activation state of the popup to the new activation state.
         this.app.initActivation = this.app.activation;
     }
@@ -295,7 +295,7 @@ export class RefreshButton extends LitElement {
         }
         return html`
         <div>
-            <span @click=${this.refreshTab}>${browser.i18n.getMessage("buttonReloadPageForChange")}</span>
+            <span @click=${this.refreshTab}>${brw.i18n.getMessage("buttonReloadPageForChange")}</span>
         </div>
         `;
     }
@@ -325,7 +325,7 @@ export class RedoButton extends LitElement {
      * @param {Event} event
      */
     async redoPatternCheck(event) {
-        await browser.tabs.sendMessage((await getCurrentTab()).id, { action: "redoPatternHighlighting" });
+        await brw.tabs.sendMessage((await getCurrentTab()).id, { action: "redoPatternHighlighting" });
     }
 
     /**
@@ -339,7 +339,7 @@ export class RedoButton extends LitElement {
         }
         return html`
         <div>
-            <span @click=${this.redoPatternCheck}>${browser.i18n.getMessage("buttonRedoPatternCheck")}</span>
+            <span @click=${this.redoPatternCheck}>${brw.i18n.getMessage("buttonRedoPatternCheck")}</span>
         </div>
       `;
     }
@@ -378,7 +378,7 @@ export class FoundPatternsList extends LitElement {
         }
         return html`
         <div>
-            <h2>${browser.i18n.getMessage("headingFoundPatterns")}</h2>
+            <h2>${brw.i18n.getMessage("headingFoundPatterns")}</h2>
             <h2 style="color: ${this.results.countVisible ? "red" : "green"}">${this.results.countVisible}</h2>
             <ul>
                 ${this.results.patterns?.map((pattern) => {
@@ -515,7 +515,7 @@ export class ShowPatternButtons extends LitElement {
         // Set the ID of the currently shown element to the ID of the element at the new index.
         this._currentPatternId = this._visiblePatterns[idx].phid;
         // Send a message to the content script to show the element with the ID of `_currentPatternId`.
-        await browser.tabs.sendMessage((await getCurrentTab()).id, { "showElement": this._currentPatternId });
+        await brw.tabs.sendMessage((await getCurrentTab()).id, { "showElement": this._currentPatternId });
     }
 
     /**
@@ -602,7 +602,7 @@ export class ShowPatternButtons extends LitElement {
 
         return html`
         <div>
-            <h2>${browser.i18n.getMessage("headingShowPattern")}</h2>
+            <h2>${brw.i18n.getMessage("headingShowPattern")}</h2>
             <span class="button" @click=${this.showPreviousPattern}>⏮️</span>
             <span>${this.getCurrentPatternNumber()} von ${this.results.countVisible}</span>
             <span class="button" @click=${this.showNextPattern}>⏭️</span>
@@ -638,12 +638,14 @@ export class SupportedPatternsList extends LitElement {
     render() {
         return html`
         <div>
-            <h2>${browser.i18n.getMessage("headingSupportedPatterns")}</h2>
+            <h2>${brw.i18n.getMessage("headingSupportedPatterns")}</h2>
             <ul>
                 ${constants.patternConfig.patterns.map((pattern) =>
             html`
                     <li title="${pattern.info}">
-                        <a href="${pattern.infoUrl}" target="_blank">${pattern.name}</a>
+                        <a href="${pattern.infoUrl}" target="_blank">
+                            ${pattern.name} (${pattern.languages.map(l => l.toUpperCase()).join(", ")})
+                        </a>
                     </li>`
         )}
             </ul>
@@ -676,7 +678,7 @@ export class PopupFooter extends LitElement {
     render() {
         return html`
         <div>
-            ${browser.i18n.getMessage("textMoreInformation")}: <a href="https://dapde.de/" target="_blank">dapde.de</a>.
+            ${brw.i18n.getMessage("textMoreInformation")}: <a href="https://dapde.de/" target="_blank">dapde.de</a>.
         </div>
       `;
     }

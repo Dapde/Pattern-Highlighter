@@ -28,11 +28,11 @@
     "description": "Text für den Button um das Pattern Highlighting auf der Seite zu wiederholen."
   },
   "headingShowPattern": {
-    "message": "Pattern anzeigen",
+    "message": "Patterns anzeigen",
     "description": "Überschrift im Popup für die Buttons um einzelne Pattern-Elemente anzuzeigen."
   },
   "headingFoundPatterns": {
-    "message": "Gefundene Pattern",
+    "message": "Gefundene Patterns",
     "description": "Überschrift im Popup für die Liste der gefundenen Pattern."
   },
   "headingSupportedPatterns": {
@@ -52,7 +52,7 @@
     "description": "Nachricht in der Konsole, wenn der Pattern Highlighter in einem Tab deaktiviert ist."
   },
   "infoNumberPatternsFound": {
-    "message": "$COUNT$ Pattern wurden erkannt.",
+    "message": "$COUNT$ Pattern(s) wurden erkannt.",
     "description": "Nachricht in der Konsole, wie viele Pattern erkannt wurden.",
     "placeholders": {
       "count": {
@@ -61,51 +61,51 @@
       }
     }
   },
-  "patternCountdownDE_name": {
-    "message": "Countdown (DE)",
-    "description": "Name des Countdown Pattern (optimiert für deutsche Webseiten)."
+  "patternCountdown_name": {
+    "message": "Countdown",
+    "description": "Name des Countdown Pattern."
   },
-  "patternCountdownDE_infoUrl": {
+  "patternCountdown_infoUrl": {
     "message": "https://dapde.de/de/dark-patterns/arten-und-beispiele/druck2/",
     "description": "URL zur Erklärung des Countdown Pattern auf der dapde.de Webseite."
   },
-  "patternCountdownDE_info": {
+  "patternCountdown_info": {
     "message": "Countdown-Dark Patterns erwecken (wahrheitsgemäß oder fälschlicherweise) den Eindruck, eine Ware bzw. Dienstleistung ist nur noch für eine bestimmte Zeit verfügbar. Grafisch wird dies durch eine ablaufende Uhr oder Leiste verdeutlicht. Man kann zusehen, wie einem das gewünschte Gut davongleitet.",
     "description": "Kurze Erklärung des Countdown Pattern."
   },
-  "patternScarcityDE_name": {
-    "message": "Scarcity (DE)",
-    "description": "Name des Scarcity Pattern (optimiert für deutsche Webseiten)."
+  "patternScarcity_name": {
+    "message": "Scarcity",
+    "description": "Name des Scarcity Pattern."
   },
-  "patternScarcityDE_infoUrl": {
+  "patternScarcity_infoUrl": {
     "message": "https://dapde.de/de/dark-patterns/arten-und-beispiele/druck2/",
     "description": "URL zur Erklärung des Scarcity Pattern auf der dapde.de Webseite."
   },
-  "patternScarcityDE_info": {
+  "patternScarcity_info": {
     "message": "Das Scarcity-Pattern erweckt (wahrheitsgemäß oder fälschlicherweise) den Eindruck, eine Ware oder Dienstleistung ist nur noch in knapper Zahl verfügbar. Scarcity Patterns gibt es auch in Varianten, bei denen die angebliche Knappheit schlicht erfunden ist. Oder es wird zumindest nicht deutlich gemacht, ob sich die begrenzte Verfügbarkeit auf das Produkt insgesamt oder nur auf das Kontingent des besuchten Portals bezieht.",
     "description": "Kurze Erklärung des Scarcity Pattern."
   },
-  "patternSocialProofDE_name": {
-    "message": "Social Proof (DE)",
-    "description": "Name des Social Proof Pattern (optimiert für deutsche Webseiten)."
+  "patternSocialProof_name": {
+    "message": "Social Proof",
+    "description": "Name des Social Proof Pattern."
   },
-  "patternSocialProofDE_infoUrl": {
+  "patternSocialProof_infoUrl": {
     "message": "https://dapde.de/de/dark-patterns/arten-und-beispiele/druck2/",
     "description": "URL zur Erklärung des Social Proof Pattern auf der dapde.de Webseite."
   },
-  "patternSocialProofDE_info": {
+  "patternSocialProof_info": {
     "message": "Das Social Proof-Dark Pattern setzt auf soziale Bewährtheit. Positive Produktbewertungen oder Aktivitätsmeldungen anderer Nutzer:innen werden direkt eingeblendet. Häufig sind diese Bewertungen oder Meldungen schlicht erfunden. Aber auch authentische Bewertungen oder Meldungen beeinflussen durch geschicktes Selektieren und Platzieren die Kaufentscheidung.",
     "description": "Kurze Erklärung des Social Proof Pattern."
   },
-  "patternForcedContinuityDE_name": {
-    "message": "Forced Continuity (DE)",
-    "description": "Name des Forced Continuity Pattern (optimiert für deutsche Webseiten)."
+  "patternForcedContinuity_name": {
+    "message": "Forced Continuity",
+    "description": "Name des Forced Continuity Pattern."
   },
-  "patternForcedContinuityDE_infoUrl": {
+  "patternForcedContinuity_infoUrl": {
     "message": "https://dapde.de/de/dark-patterns/arten-und-beispiele/operativer-zwang2/",
     "description": "URL zur Erklärung des Forced Continuity Pattern auf der dapde.de Webseite."
   },
-  "patternForcedContinuityDE_info": {
+  "patternForcedContinuity_info": {
     "message": "Das Forced Continuity-Dark Pattern verlängert kostenlose oder günstig Probeabonnements automatisch – allerdings kostenpflichtig bzw. zu einem höheren Preis. Der Designtrick liegt darin, dass das Bestellformular auch optisch Kostenlosigkeit suggeriert und die (automatischen) Folgekosten verschleiert.",
     "description": "Kurze Erklärung des Forced Continuity Pattern."
   }

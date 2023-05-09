@@ -6,3 +6,10 @@ temp/
 
 # System Files
 .DS_Store
+
+# Firefox version (only keep the different files)
+firefox/*
+!firefox/manifest.json
+
+# Safari version (do not track the generated folder)
+safari/*
