@@ -220,9 +220,14 @@ export const patternConfig = {
                     // The regular expressions check if one of three combinations of a price specification
                     // in Euro, Dollar or Pound and the specification of a month is present.
                     // The previous state of the element is not used.
-                    if (/(?:(?:€|EUR|GBP|£|\$|USD)\s*\d+(?:\.\d{2})?|\d+(?:\.\d{2})?\s*(?:euros?|€|EUR|GBP|£|pounds?(?:\s*sterling)?|\$|USD|dollars?))\s*(?:(?:per|\/|p)\s*(?:month|m))?\s*after\s*(?:the)?\s*\d+(?:th|nd|rd|th)?\s*months?/i.test(node.innerText)) {
+                    if (/(?:(?:€|EUR|GBP|£|\$|USD)\s*\d+(?:\.\d{2})?|\d+(?:\.\d{2})?\s*(?:euros?|€|EUR|GBP|£|pounds?(?:\s*sterling)?|\$|USD|dollars?))\s*(?:(?:(?:per|\/|a)\s*month)|(?:p|\/)m)\s*(?:after|from\s*(?:month|day)\s*\d+)/i.test(node.innerText)) {
+                        // Example: "$10.99/month after"
+                        //          "11 GBP a month from month 4"
+                        return true;
+                    }
+                    if (/(?:(?:€|EUR|GBP|£|\$|USD)\s*\d+(?:\.\d{2})?|\d+(?:\.\d{2})?\s*(?:euros?|€|EUR|GBP|£|pounds?(?:\s*sterling)?|\$|USD|dollars?))\s*(?:after\s*(?:the)?\s*\d+(?:th|nd|rd|th)?\s*(?:months?|days?)|from\s*(?:month|day)\s*\d+)/i.test(node.innerText)) {
                         // Example: "$10.99 after 12 months"
-                        //          "11 GBP per Month after the 6th months"
+                        //          "11 GBP from month 4"
                         return true;
                     }
                     if (/(?:after\s*that|then|afterwards|subsequently)\s*(?:(?:€|EUR|GBP|£|\$|USD)\s*\d+(?:\.\d{2})?|\d+(?:\.\d{2})?\s*(?:euros?|€|EUR|GBP|£|pounds?(?:\s*sterling)?|\$|USD|dollars?))\s*(?:(?:(?:per|\/|a)\s*month)|(?:p|\/)m)/i.test(node.innerText)) {
@@ -244,14 +249,19 @@ export const patternConfig = {
                     // The regular expressions check if one of three combinations of a price specification
                     // in Euro and the specification of a month is present.
                     // The previous state of the element is not used.
-                    if (/\d+(?:,\d{2})?\s*(?:Euro|€)\s*ab\s*(?:dem)?\s*\d+\.\s*Monat/i.test(node.innerText)) {
-                        // Example: "10,99 Euro ab dem 12. Monat"
-                        //          "11€ ab 6. Monat"
+                    if (/\d+(?:,\d{2})?\s*(?:Euro|€)\s*(?:(?:pro|im|\/)\s*Monat)?\s*(?:ab\s*(?:dem)?\s*\d+\.\s*Monat|nach\s*\d+\s*(?:Monaten|Tagen)|nach\s*(?:einem|1)\s*Monat)/i.test(node.innerText)) {
+                        // Example: "10,99 Euro pro Monat ab dem 12. Monat"
+                        //          "11€ nach 30 Tagen"
                         return true;
                     }
-                    if (/(?:anschließend|danach)\s*\d+(?:,\d{2})?\s*(?:Euro|€)\s*(?:pro|\/)\s*Monat/i.test(node.innerText)) {
+                    if (/(?:anschließend|danach)\s*\d+(?:,\d{2})?\s*(?:Euro|€)\s*(?:pro|im|\/)\s*Monat/i.test(node.innerText)) {
                         // Example: "anschließend 23,99€ pro Monat"
                         //          "danach 10 Euro/Monat"
+                        return true;
+                    }
+                    if (/\d+(?:,\d{2})?\s*(?:Euro|€)\s*(?:pro|im|\/)\s*Monat\s*(?:anschließend|danach)/i.test(node.innerText)) {
+                        // Example: "23,99€ pro Monat anschließend"
+                        //          "10 Euro/Monat danach"
                         return true;
                     }
                     if (/ab(?:\s*dem)?\s*\d+\.\s*Monat(?:\s*nur)?\s*\d+(?:,\d{2})?\s*(?:Euro|€)/i.test(node.innerText)) {
