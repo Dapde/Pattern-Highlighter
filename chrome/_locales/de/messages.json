@@ -108,5 +108,19 @@
   "patternForcedContinuity_info": {
     "message": "Das Forced Continuity-Dark Pattern verlängert kostenlose oder günstig Probeabonnements automatisch – allerdings kostenpflichtig bzw. zu einem höheren Preis. Der Designtrick liegt darin, dass das Bestellformular auch optisch Kostenlosigkeit suggeriert und die (automatischen) Folgekosten verschleiert.",
     "description": "Kurze Erklärung des Forced Continuity Pattern."
+  },
+  "showPatternState": {
+    "message": "$CURRENT$ von $TOTAL$",
+    "description": "Anzeige der Nummer des aktuellen Patterns im Popup für die Funktion 'Pattern ansehen'.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "1"
+      },
+      "total": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
   }
 }

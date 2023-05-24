@@ -571,10 +571,10 @@ export class ShowPatternButtons extends LitElement {
             // Only generate a text when the element is still present in the array.
             if (idx !== -1) {
                 // Generate the HTML text with the number (`index + 1`).
-                return html`${idx + 1}`;
+                return `${idx + 1}`;
             }
         }
-        return html`-`;
+        return "-";
     }
 
     /**
@@ -604,7 +604,7 @@ export class ShowPatternButtons extends LitElement {
         <div>
             <h2>${brw.i18n.getMessage("headingShowPattern")}</h2>
             <span class="button" @click=${this.showPreviousPattern}>⏮️</span>
-            <span>${this.getCurrentPatternNumber()} von ${this.results.countVisible}</span>
+            <span>${brw.i18n.getMessage("showPatternState", [this.getCurrentPatternNumber(), this.results.countVisible.toString()])}</span>
             <span class="button" @click=${this.showNextPattern}>⏭️</span>
             ${this.getCurrentPatternText()}
         </div>

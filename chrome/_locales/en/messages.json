@@ -108,5 +108,19 @@
   "patternForcedContinuity_info": {
     "message": "The Forced Continuity pattern automatically renews free or low-cost trial subscriptions - but for a fee or at a higher price. The design trick is that the order form visually suggests that there is no charge and conceals the (automatic) follow-up costs.",
     "description": "Brief explanation of the forced continuity Pattern."
+  },
+  "showPatternState": {
+    "message": "$CURRENT$ of $TOTAL$",
+    "description": "Display the number of the current pattern in the popup for the 'Show patterns' function.",
+    "placeholders": {
+      "current": {
+        "content": "$1",
+        "example": "1"
+      },
+      "total": {
+        "content": "$2",
+        "example": "4"
+      }
+    }
   }
 }

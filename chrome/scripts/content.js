@@ -119,6 +119,9 @@ async function patternHighlighting(waitForChanges = false) {
     // An example of an expected change is a countdown that counts down every second.
     await new Promise(resolve => { setTimeout(resolve, 1536) });
 
+    // Add pattern highlighter IDs to every element on the page.
+    addPhidForEveryElement(document.body);
+
     // Create a second copy of the DOM. This copy will reflect changes, if there were any.
     let domCopyB = document.body.cloneNode(true);
     // Remove unwanted elements from the second DOM copy.
